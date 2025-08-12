@@ -66,9 +66,9 @@
 
     <label for="status">Статус</label>
     <select id="status" name="status">
-      <option value="pending">pending</option>
-      <option value="in_progress">in_progress</option>
-      <option value="completed">completed</option>
+      <option value="0">pending</option>
+      <option value="1">in_progress</option>
+      <option value="2">completed</option>
     </select>
 
     <div>
