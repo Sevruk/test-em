@@ -55,9 +55,16 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'sometimes|required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => ['sometimes', 'required', Rule::in(['0', '1', '2'])],
+        ]);
+
+        $task->update($validated);
+        return response()->json($task, 200);
     }
 
     /**
