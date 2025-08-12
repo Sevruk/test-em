@@ -1,0 +1,14 @@
+php artisan serve // запуск сервера локального.
+
+php artisan make:controller MyPlaceController // Новый контроллер
+
+
+php artisan make:model Task -m // Модель + миграция BD
+
+
+php artisan migrate:fresh // Если чет не так прави миграции и перзапускаем.
+
+php artisan migrate // сама миграция
+
+
+php artisan make:model Task -mcr // Model, Controller Resource Controller
