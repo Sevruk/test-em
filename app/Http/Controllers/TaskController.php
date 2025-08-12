@@ -8,6 +8,9 @@ use Illuminate\Validation\Rule;
 
 class TaskController extends Controller
 {
+    private array $sprStatus = ['0', '1', '2'];
+    
+
     /**
      * Display a listing of the resource.
      */
@@ -27,9 +30,16 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store($request)
+    public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => ['required', Rule::in($this->sprStatus)],
+        ]);
+
+        $task = Task::create($validated);
+        return response()->json($task, 201);
     }
 
     /**
@@ -60,7 +70,7 @@ class TaskController extends Controller
         $validated = $request->validate([
             'title' => 'sometimes|required|string|max:255',
             'description' => 'nullable|string',
-            'status' => ['sometimes', 'required', Rule::in(['0', '1', '2'])],
+            'status' => ['sometimes', 'required', Rule::in($this->sprStatus)],
         ]);
 
         $task->update($validated);
