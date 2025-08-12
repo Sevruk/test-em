@@ -11,3 +11,5 @@ Route::get('/', function () {
 
 
 Route::get('/posts', [TaskController::class, 'indexs']);
+
+//Route::apiResource('tasks', TaskController::class);
